@@ -1,0 +1,26 @@
+2015-03-30 15:49:52,435 [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /Users/lzhong/workspace/thesis/esc499/bin/../conf/zoo.cfg
+2015-03-30 15:49:52,440 [myid:] - INFO  [main:DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3
+2015-03-30 15:49:52,440 [myid:] - INFO  [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+2015-03-30 15:49:52,440 [myid:] - INFO  [main:DatadirCleanupManager@101] - Purge task is not scheduled.
+2015-03-30 15:49:52,441 [myid:] - WARN  [main:QuorumPeerMain@113] - Either no config or no quorum defined in config, running  in standalone mode
+2015-03-30 15:49:52,455 [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /Users/lzhong/workspace/thesis/esc499/bin/../conf/zoo.cfg
+2015-03-30 15:49:52,455 [myid:] - INFO  [main:ZooKeeperServerMain@95] - Starting server
+2015-03-30 15:49:52,464 [myid:] - INFO  [main:Environment@100] - Server environment:zookeeper.version=3.4.6-1569965, built on 02/20/2014 09:09 GMT
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:host.name=inside-179-117.wireless.utoronto.ca
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:java.version=1.7.0_75
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:java.vendor=Oracle Corporation
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk1.7.0_75.jdk/Contents/Home/jre
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:java.class.path=/Users/lzhong/workspace/thesis/esc499/bin/../build/classes:/Users/lzhong/workspace/thesis/esc499/bin/../build/lib/*.jar:/Users/lzhong/workspace/thesis/esc499/bin/../lib/slf4j-log4j12-1.6.1.jar:/Users/lzhong/workspace/thesis/esc499/bin/../lib/slf4j-api-1.6.1.jar:/Users/lzhong/workspace/thesis/esc499/bin/../lib/netty-3.7.0.Final.jar:/Users/lzhong/workspace/thesis/esc499/bin/../lib/log4j-1.2.16.jar:/Users/lzhong/workspace/thesis/esc499/bin/../lib/jline-0.9.94.jar:/Users/lzhong/workspace/thesis/esc499/bin/../zookeeper-3.4.6.jar:/Users/lzhong/workspace/thesis/esc499/bin/../src/java/lib/*.jar:/Users/lzhong/workspace/thesis/esc499/bin/../conf:
+2015-03-30 15:49:52,465 [myid:] - INFO  [main:Environment@100] - Server environment:java.library.path=/Users/lzhong/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2015-03-30 15:49:52,466 [myid:] - INFO  [main:Environment@100] - Server environment:java.io.tmpdir=/var/folders/l2/8jzhqnzn0078pxjm13dcrvm40000gn/T/
+2015-03-30 15:49:52,466 [myid:] - INFO  [main:Environment@100] - Server environment:java.compiler=<NA>
+2015-03-30 15:49:52,468 [myid:] - INFO  [main:Environment@100] - Server environment:os.name=Mac OS X
+2015-03-30 15:49:52,468 [myid:] - INFO  [main:Environment@100] - Server environment:os.arch=x86_64
+2015-03-30 15:49:52,468 [myid:] - INFO  [main:Environment@100] - Server environment:os.version=10.10.2
+2015-03-30 15:49:52,468 [myid:] - INFO  [main:Environment@100] - Server environment:user.name=lzhong
+2015-03-30 15:49:52,469 [myid:] - INFO  [main:Environment@100] - Server environment:user.home=/Users/lzhong
+2015-03-30 15:49:52,469 [myid:] - INFO  [main:Environment@100] - Server environment:user.dir=/Users/lzhong/workspace/thesis/esc499
+2015-03-30 15:49:52,477 [myid:] - INFO  [main:ZooKeeperServer@755] - tickTime set to 2000
+2015-03-30 15:49:52,477 [myid:] - INFO  [main:ZooKeeperServer@764] - minSessionTimeout set to -1
+2015-03-30 15:49:52,477 [myid:] - INFO  [main:ZooKeeperServer@773] - maxSessionTimeout set to -1
+2015-03-30 15:49:52,494 [myid:] - INFO  [main:NIOServerCnxnFactory@94] - binding to port 0.0.0.0/0.0.0.0:2181
