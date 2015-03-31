@@ -1,5 +1,7 @@
 *.class
 
+.DS_Store
+
 *.pydevproject
 .metadata
 .gradle
