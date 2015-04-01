@@ -43,7 +43,7 @@ public class Worker {
 			System.out.println("created worker: " + wId);
 			// hack to not burst pass handlers of other components
 			try {
-				Thread.sleep(100);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

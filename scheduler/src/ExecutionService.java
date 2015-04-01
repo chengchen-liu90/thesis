@@ -72,55 +72,28 @@ public class ExecutionService {
 		return res;
 	}
 
-	protected synchronized void handleExecutionsChange() {
-		List<String> children = this.zkc.getChildren(EXE_PATH, this.eWatcher);
+	protected void handleExecutionsChange() {
+		this.match();
+		// reset watcher
+		List<String> children = this.zkc.getChildren(EXE_PATH,
+				this.eWatcher);
 		if (children == null) {
 			System.out.println("ERR: " + EXE_PATH + " does not exist ");
 		}
 	}
 
-	protected synchronized void handleWorkersChange() {
-		List<String> jobList = this.zkc.getChildren(JOBS_PATH);
-		int jobsGiven = 0;
-		System.out.println("jobs " + jobList.size());
-		if (!jobList.isEmpty()) {
-			// can assign new worker a job
-			List<String> workerList = this.zkc.getChildren(WORKERS_PATH);
-			System.out.println("workers " + workerList.size());
-			List<String> exeList = this.zkc.getChildren(EXE_PATH);
-			for (String w : workerList) {
-				boolean assignWork = this.stringInList(w, exeList);
-				if (assignWork) {
-					String jobId = jobList.get(jobsGiven);
-					String jPath = JOBS_PATH + "/" + jobId;
-					Code remove = this.zkc.delete(jPath);
-					if (remove == KeeperException.Code.OK) {
-						// successfully removed one job
-						String ePath = EXE_PATH + "/" + w + jobId;
-						Code add = this.zkc.create(ePath, null,
-								CreateMode.PERSISTENT);
-						if (add != KeeperException.Code.OK) {
-							System.err.println("failed to create " + ePath);
-						}
-						// successfully created one execution
-						jobsGiven++;
-					}
-				}
-				if (jobsGiven == jobList.size()) {
-					break; // all jobs given
-				}
-			}
-		}
+	protected void handleWorkersChange() {
+		this.match();
 		// reset watcher
-		List<String> children = this.zkc.getChildren(WORKERS_PATH, this.wWatcher);
+		List<String> children = this.zkc.getChildren(WORKERS_PATH,
+				this.wWatcher);
 		if (children == null) {
 			System.out.println("ERR: " + WORKERS_PATH + " does not exist ");
 		}
 	}
 
-	protected synchronized void handleJobsChange() {
-
-		// TODO Auto-generated method stub
+	protected void handleJobsChange() {
+		this.match();
 		List<String> children = this.zkc.getChildren(JOBS_PATH, this.jWatcher);
 		if (children == null) {
 			System.out.println("ERR: " + JOBS_PATH + " does not exist ");
@@ -147,11 +120,52 @@ public class ExecutionService {
 
 		while (true) {
 			try {
-				Thread.sleep(1000);
+				es.match();
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+	}
 
+	private void match() {
+		synchronized (this.zkc) {// matches all jobs and workers if possible
+			List<String> jobList = this.zkc.getChildren(JOBS_PATH);
+			int jobsGiven = 0;
+			// System.out.println("jobs " + jobList.size());
+			if (!jobList.isEmpty()) {
+				// can assign new worker a job
+				List<String> workerList = this.zkc
+						.getChildren(WORKERS_PATH);
+				// System.out.println("workers " + workerList.size());
+				List<String> exeList = this.zkc.getChildren(EXE_PATH);
+				for (String w : workerList) {
+					boolean assignWork = this.stringInList(w, exeList);
+					if (assignWork) {
+						String jobId = jobList.get(jobsGiven);
+						String jPath = JOBS_PATH + "/" + jobId;
+						Code remove = this.zkc.delete(jPath);
+						if (remove == KeeperException.Code.OK) {
+							// successfully removed one job
+							String ePath = EXE_PATH + "/" + w + jobId;
+							Code add = this.zkc.create(ePath, null,
+									CreateMode.PERSISTENT);
+							if (add != KeeperException.Code.OK) {
+								System.err.println("failed to create " + ePath);
+							}
+							// successfully created one execution
+							jobsGiven++;
+							Thread t = new Thread(new ExecutionThreadHandler(
+									(w + jobId), Integer.parseInt(jobId
+											.substring(1)), this.zkc));
+							t.start();
+						}
+					}
+					if (jobsGiven == jobList.size()) {
+						break; // all jobs given
+					}
+				}
+			}
+		}
 	}
 }
