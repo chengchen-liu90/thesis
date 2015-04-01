@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.sql.Timestamp;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.KeeperException.Code;
@@ -27,15 +30,25 @@ public class ExecutionThreadHandler implements Runnable {
 		System.out.println("Starting job: " + this.exeId + " for Q: "
 				+ this.qVal);
 		this.start = System.currentTimeMillis();
-
+		int retval = -1;
 		try {
-			Thread.sleep(5000);
+			String cmd = "sh /home/zhongli3/java/npairs/script.sh " + this.qVal;
+			Process p;
+			p = Runtime.getRuntime().exec(cmd);
+			retval = p.waitFor();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		this.end = System.currentTimeMillis();
 		this.exeTime = this.end - this.start;
+		System.out.println("RETVAL for " + this.exeId + " is " + retval
+				+ " and it started at " + new Timestamp(this.start).toString()
+				+ " and finished at " + new Timestamp(this.end).toString()
+				+ " . It took " + (this.exeTime / 1000) + "s in total");
 		this.executionComplete(this.exeId, this.start, this.end,
 				this.exeTime);
 	}

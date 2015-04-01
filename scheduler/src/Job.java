@@ -34,7 +34,7 @@ public class Job {
 		ZkUtil.createAllPersistentNodes(zk);
 
 		// create jobs - AmWorks :)
-		for (int q = 0; q < numQ; q++) {
+		for (int q = 1; q <= numQ; q++) {
 			String jId = "j" + q;
 			try {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -53,19 +53,19 @@ public class Job {
 			System.out.println("created job: " + jId);
 			// hack to not burst pass handlers of other components
 			try {
-				Thread.sleep(500);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-
-		while (true) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		//
+		// while (true) {
+		// try {
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
 	}
 
 }

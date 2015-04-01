@@ -34,7 +34,7 @@ public class Worker {
 			String wId = "w" + i;
 			try {
 				zk.create(wPath + "/" + wId, null, Ids.OPEN_ACL_UNSAFE,
-						CreateMode.EPHEMERAL);
+						CreateMode.PERSISTENT);
 			} catch (KeeperException e) {
 				System.out.println(e.code());
 			} catch (Exception e) {
@@ -43,18 +43,18 @@ public class Worker {
 			System.out.println("created worker: " + wId);
 			// hack to not burst pass handlers of other components
 			try {
-				Thread.sleep(500);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-
-		while (true) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+		//
+		// while (true) {
+		// try {
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
 	}
 }
